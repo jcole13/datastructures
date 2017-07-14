@@ -14,13 +14,14 @@ public class Parser {
 			default:throw new InputMismatchException();//throws if not a space number or operation
 			}
 		}
+		temp=addElement(temp,work);
 		return temp;
 	}
 	private static String[] addElement(String[] target, String add){//this is a helper method to help me add an element to an array
 		try {
-		if(add.charAt(0)==' ')add=add.substring(1);
+			if(add.charAt(0)==' ')add=add.substring(1);
 		}catch(StringIndexOutOfBoundsException n) {
-			System.out.println("index check");
+			//System.out.println("index check");
 		}
 		if(add.length()==0||add.equals(" "))return target;
 		String [] temp=target;

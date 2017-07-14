@@ -2,10 +2,15 @@ package main;
 
 public class Stack {
 	
-	Node top;
-	int length;
+	private Node top;
+	private int length;
 	
 	public Stack(){length = 0;}
+	
+	public int getLength() {
+		return length;
+	}
+	
 	
 	public void join(String s){
 		Node temp = new Node(s);
