@@ -15,16 +15,30 @@ public class Stack {
 		else{
 			temp.setNext(top);
 			top = temp;
+			length++;
 			}
 	}
 	public String leave() throws StackEmptyException{
-		if(isEmpty()) throw new StackEmptyException();
+		if(isEmpty()) {
+			throw new StackEmptyException();
+		}
 		String temp = top.getData();
 		top = top.getNext();
 		length--;
+		//System.out.println(length);
 		return temp;
 	}
 
 	private boolean isEmpty(){return length == 0;}
+	
+	public String toString(){
+		String temp = "[";
+		Node on = top;
+		while(on != null){
+			temp += " " + on.getData()+",";
+			on = on.getNext();
+		}
+		return temp.substring(0, temp.length()-1) + "]";
+	}
 
 }

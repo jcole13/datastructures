@@ -1,6 +1,6 @@
 package main;
 
-public class StackEmptyException extends Exception{
+public class StackEmptyException extends RuntimeException{
 	public StackEmptyException(){
 		super("Stack is empty");
 	}

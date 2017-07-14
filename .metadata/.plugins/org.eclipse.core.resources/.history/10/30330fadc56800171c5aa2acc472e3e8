@@ -1,0 +1,17 @@
+package main;
+
+public class Calculation {
+	
+	public int reversePolish(String [] arr) {
+		int answer = 0; 
+	}
+	
+	public int infix(String[] arr) {
+		if(!checkWellFormed()) {
+			System.out.println("Expression not well formed!");
+			return 0;
+		}
+		
+	}
+
+}

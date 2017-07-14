@@ -1,0 +1,29 @@
+package main;
+
+public class Calculation {
+	
+	public int reversePolish(String [] arr) {
+		if(checkWellFormed(arr)) throw new InputMismatchException();
+		int answer = 0; 
+		Stack reverse = new Stack();
+		for(String s : arr) {
+			switch(s){
+				case "+": reverse.join(Integer.parseInt(reverse.leave()) + Integer.parseInt(reverse.leave()) + "");
+				case "*": reverse.join(Integer.parseInt(reverse.leave()) * Integer.parseInt(reverse.leave()) + "");
+				case "/": reverse.join(1/(Integer.parseInt(reverse.leave()) / Integer.parseInt(reverse.leave())) + "");//divide by 0
+				case "-": reverse.join(-(Integer.parseInt(reverse.leave()) - Integer.parseInt(reverse.leave())) + "");
+				default : reverse.join(s);
+					
+			}
+		}
+	}
+	
+	public int infix(String[] arr) {
+		if(!checkWellFormed()) {
+			System.out.println("Expression not well formed!");
+			return 0;
+		}
+		
+	}
+
+}

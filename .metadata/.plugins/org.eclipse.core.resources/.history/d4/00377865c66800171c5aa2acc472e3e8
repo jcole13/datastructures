@@ -1,0 +1,24 @@
+package main;
+
+public class Calculation {
+	
+	public int reversePolish(String [] arr) {
+		int answer = 0; 
+		Stack reverse = new Stack();
+		for(String s : arr) {
+			switch(s){
+				case "+": reverse.join(Integer.parseInt(reverse.leave()) + Integer.parseInt(reverse.leave()) + "");
+					
+			}
+		}
+	}
+	
+	public int infix(String[] arr) {
+		if(!checkWellFormed()) {
+			System.out.println("Expression not well formed!");
+			return 0;
+		}
+		
+	}
+
+}
