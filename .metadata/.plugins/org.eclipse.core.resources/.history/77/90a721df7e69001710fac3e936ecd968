@@ -1,0 +1,40 @@
+package main;
+
+public class Converter {
+	
+	public String toInfix(String[] arr) {//can check if last char is operator or number
+		Stack stack = new Stack();
+		int lastOperator = 0, lastDigit = 0;
+		int i = 0;
+		while(i < arr.length) {
+			if(!isOperator(arr[i])) {
+				System.out.println(stack);
+				stack.join(arr[i]);
+				for(int j = lastOperator+1; j < arr.length; j++) {
+					if(isOperator(arr[j]) && j < lastOperator + 2) {
+						stack.join(arr[j]);
+						lastOperator = j;
+						break;
+					}
+					else {
+						for(int k = j; k < arr.length; k++) {
+							if(!isOperator(arr[k])) {
+								stack.join(arr[k-1]);
+								lastOperator = k-1;
+								//break;
+							}
+						}
+					}
+				}
+				
+			}
+			i++;
+		}
+		return stack.toString();
+	}
+	
+	private boolean isOperator(String s) {
+		return(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"));
+	}
+
+}
