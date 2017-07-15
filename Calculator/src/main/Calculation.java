@@ -48,7 +48,7 @@ public class Calculation {
 		
 	}
 	
-	public boolean checkWellFormedInfix(String [] arr) { //make sure expression is ok
+	private boolean checkWellFormedInfix(String [] arr) { //make sure expression is ok
 		int counter = 0;
 		for(String s : arr) {
 			if(s.equals("(")) counter++;
@@ -56,7 +56,7 @@ public class Calculation {
 		}
 		return counter==0;
 	}
-	public boolean checkWellFormedPolish(String [] arr) { //make sure expression is ok
+	private boolean checkWellFormedPolish(String [] arr) { //make sure expression is ok
 		int counter = 0;
 		String regex = "\\d+"; //digit
 		for(String s : arr) {
@@ -80,7 +80,12 @@ public class Calculation {
 			case "+" : first = first + Integer.parseInt(i.leave()); break;
 			case "*" : first = first * Integer.parseInt(i.leave()); break;
 			case "-" : first = Integer.parseInt(i.leave()) - first; break;
-			case "/" : first = Integer.parseInt(i.leave()) / first; break;
+			case "/" : 
+				try {
+				first = Integer.parseInt(i.leave()) / first; break;
+				}catch(ArithmeticException a) {
+					System.out.println("Divide by 0!");
+				}
 			default : throw new InputMismatchException(); 
 			}
 			

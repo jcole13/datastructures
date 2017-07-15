@@ -1,0 +1,61 @@
+package main;
+
+public class Converter {
+	
+	public String toInfix(String[] arr) {//goes through and consolidates a postfix expression
+		Stack stack = new Stack();
+		for(int i = 0; i < arr.length; i++) {
+			if(!isOperator(arr[i])) stack.join(arr[i]);
+			else {
+				String one = stack.leave();
+				String two = stack.leave();
+				stack.join("(" + two + arr[i] + one + ")" );
+			}
+		}
+		return stack.leave();
+	}
+	
+	public String toPolish(String[] arr) {
+		Stack stack = new Stack();
+		String result = "";
+		System.out.println("x1" + stack);
+		for(int i = 0; i < arr.length; i++) {
+			if(!isOperator(arr[i])) {
+				result += " " + arr[i];
+				System.out.println(result);
+			}
+			else if(isOperator(arr[i]) && stack.getLength() == 0 && !stack.equals("(")) {
+				stack.join(arr[i]);
+				System.out.println("x" + stack);
+			}
+			else if(isOperator(arr[i]) && stack.getLength() > 0) {
+				if(pemdas(stack.look()) > pemdas(arr[i])) {
+					stack.leave();
+				}
+				else {
+					stack.join(arr[i]);
+				}
+			}
+		}
+		System.out.println(stack);
+		while(stack.getLength() > 0) {
+			if(!stack.look().equals("(")) result += " " + stack.leave();
+			else stack.leave();
+		}
+		return result;
+		
+		
+	}
+	
+	private boolean isOperator(String s) {
+		return (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("(") ||s.equals(")"));
+	}
+	
+	private int pemdas(String s) {
+		if(s.equals("(") || s.equals(")")) return 0;
+		if(s.equals("+") || s.equals("-")) return 1;
+		if(s.equals("*") || s.equals("/")) return 2;
+		return -1;
+	}
+
+}

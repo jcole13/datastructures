@@ -2,13 +2,15 @@ package main;
 
 public class Converter {
 	
-	public String toInfix(String[] arr) {//can check if last char is operator or number
+	public String toInfix(String[] arr) {//goes through and consolidates a postfix expression
 		Stack stack = new Stack();
 		for(int i = 0; i < arr.length; i++) {
 			if(!isOperator(arr[i])) stack.join(arr[i]);
 			else {
-				String one = stack.leave();
-				String two = stack.leave();
+				String one = "";
+				String two = "";
+				one = stack.leave();
+				two = stack.leave();
 				stack.join("(" + two + arr[i] + one + ")" );
 			}
 		}
@@ -17,13 +19,48 @@ public class Converter {
 	
 	public String toPolish(String[] arr) {
 		Stack stack = new Stack();
-		return null;
+		String result = "";
 		
-		
+		for(int i = 0; i < arr.length; i++) {
+			if(!isOperator(arr[i])) result += " " + arr[i];
+			else if(arr[i].equals("(")) stack.join(arr[i]);
+			else if(isOperator(arr[i])) {
+				while(stack.getLength() > 0 && !stack.look().equals("(")) {
+					if(pemdas(stack.look()) >= pemdas(arr[i])) {
+						result += " " + stack.leave();
+					}
+					else break;
+				}
+				stack.join(arr[i]);
+			}
+			else if (arr[i].equals(")")){
+	            while ((stack.getLength() > 0) && (!stack.look().equals("("))){
+	                result += " " + stack.leave();
+	            }
+	            if (stack.getLength() > 0)
+	                stack.leave(); // popping out the left brace '('
+	        }
+
+		}
+		while (stack.getLength() > 0){
+	        result += " " + stack.leave();
+	    }
+		result = result.replace("(", ""); //cleaning
+		result = result.replace(")", ""); //cleaning
+		return result;
 	}
+			
+		
 	
 	private boolean isOperator(String s) {
-		return(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"));
+		return (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("(") ||s.equals(")"));
+	}
+	
+	private int pemdas(String s) {
+		if(s.equals("(") || s.equals(")")) return 0;
+		if(s.equals("+") || s.equals("-")) return 1;
+		if(s.equals("*") || s.equals("/")) return 2;
+		return -1;
 	}
 
 }

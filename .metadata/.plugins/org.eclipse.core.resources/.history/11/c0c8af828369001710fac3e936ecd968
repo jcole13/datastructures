@@ -1,0 +1,29 @@
+package main;
+
+public class Converter {
+	
+	public String toInfix(String[] arr) {//can check if last char is operator or number
+		Stack stack = new Stack();
+		for(int i = 0; i < arr.length; i++) {
+			if(!isOperator(arr[i])) stack.join(arr[i]);
+			else {
+				String one = stack.leave();
+				String two = stack.leave();
+				stack.join("(" + two + arr[i] + one + ")" );
+			}
+		}
+		return stack.leave();
+	}
+	
+	public String toPolish(String[] arr) {
+		Stack stack = new Stack();
+		return null;
+		
+		
+	}
+	
+	private boolean isOperator(String s) {
+		return(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"));
+	}
+
+}

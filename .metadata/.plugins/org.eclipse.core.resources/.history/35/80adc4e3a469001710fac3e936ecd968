@@ -1,0 +1,12 @@
+package main;
+
+public class Runner {
+	public static void main(String [] args) {
+		Calculation calculation = new Calculation();
+		Converter converter = new Converter();
+		Input input = new Input();
+		
+		input.chooseInput(calculation, converter);
+	}
+
+}

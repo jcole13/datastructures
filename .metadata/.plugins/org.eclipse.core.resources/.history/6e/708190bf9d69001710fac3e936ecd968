@@ -1,0 +1,113 @@
+package main;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Input {
+	private void chooseInput(){
+		//Use input from keyboard
+		InputStreamReader nab = new InputStreamReader(System.in);
+		BufferedReader grab = new BufferedReader(nab);
+
+		
+		System.out.println("Which method of input would you prefer? [keyboard/file]");
+		//only two options
+		String answer = null;
+		do{
+			System.out.print(">>>");
+			try {
+				answer = grab.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}while(!answer.toLowerCase().equals("keyboard") && !answer.toLowerCase().equals("file"));
+		if(answer.toLowerCase().equals("keyboard")) keyboardIn();
+		else fileIn();
+	}//end chooseInput
+		
+	
+	private void keyboardIn(){
+		//Use input from keyboard
+		InputStreamReader nab = new InputStreamReader(System.in);
+		BufferedReader grab = new BufferedReader(nab);
+		//keyboard input, user inputs everything on spot
+		System.out.println("Enter each number in the data set");
+		System.out.println("Enter a non-number to terminate");
+		String number = "a"; //arbitrary
+		
+		System.out.println("Which method of input would you prefer? [keyboard/file]");
+		//only two options
+		String answer = null;
+		do{
+			System.out.print(">>>");
+			try {
+				answer = grab.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}while(!answer.toLowerCase().equals("keyboard") && !answer.toLowerCase().equals("file"));
+		System.out.println(theList.toString());
+	}//end keyBoardin
+	private void fileIn(){
+		//Use input from keyboard
+		InputStreamReader nab = new InputStreamReader(System.in);
+		BufferedReader grab = new BufferedReader(nab);
+		String fileName = null;
+		do{
+			System.out.println("Enter a valid text file");
+			//only txt accepted, turned down otherwise
+			System.out.print(">>>");
+			try {
+				fileName = grab.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(fileName.length() < 4){
+				fileName += "aaaa";
+				//add this so out of bounds exception is not thrown
+				//the file is not valid if it is less than 4 characters anyways
+				//so the string added is arbitrary
+			}
+		}while(!fileName.substring(fileName.length()-4).equals(".txt"));
+		//Checks if last 4 chars are ".txt"
+		//System.out.println(fileName);
+		System.out.println("Entering data from file...");
+		FileReader fr  = null;
+		try {
+			fr = new FileReader(fileName);
+		} catch (FileNotFoundException e) {
+			System.out.println("Sorry, that file is not found");
+		} 
+		BufferedReader br = null; //needs to be initialized
+		
+		try{
+			
+		br = new BufferedReader(fr);
+		} catch(NullPointerException npe){ // in case the file that is entered is not there
+			System.out.println("Nothing in that file...");
+		}
+		
+		String value = null;//Initialized
+		do{
+			try{
+			value = br.readLine();
+			if(value == null) break; //necessary to stop crash. loop does not terminate on right term
+			//checks if multiple numbers in one line
+			for(String s : value.split(" ")){
+				theList.add(Double.parseDouble(s));
+			}
+			}catch(NullPointerException n){
+				//System.out.println("Something went wrong");
+			}catch(IOException e){
+				e.printStackTrace();
+			}catch(NumberFormatException nfe){
+				System.out.println("String averted. You're welcome"); //in case the file contains non-numbers
+			}
+		}while(value != null);
+		System.out.println(theList.toString());
+	}
+
+}

@@ -6,8 +6,8 @@ public class Test {
 		Calculation lator = new Calculation();
 		Converter verter = new Converter();
 		//System.out.println(Parser.parse("84 + 23"));
-		System.out.println(lator.reversePolish(Parser.parse("18 7 + 3 4 + *")));
-		System.out.println(verter.toInfix(Parser.parse("18 7 + 3 4 + *")));
+		//System.out.println(lator.reversePolish(Parser.parse("18 7 + 3 4 + *")));
+		System.out.println(verter.toPolish(Parser.parse("((8+4) * (4*8))")));
 		//for(String s:Parser.parse("23 4 +"))System.out.println(s);
 		/*
 		for(String s:Parser.parse("23*56--24*(69+8)"))

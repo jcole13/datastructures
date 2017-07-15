@@ -33,6 +33,11 @@ public class Stack {
 		//System.out.println(length);
 		return temp;
 	}
+	
+	public String look() throws StackEmptyException{
+		if(isEmpty()) throw new StackEmptyException();
+		return top.getData();
+	}
 
 	private boolean isEmpty(){return length == 0;}
 	
