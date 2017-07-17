@@ -1,0 +1,32 @@
+package main;
+
+public class Node {
+	People data;
+	Node next, previous;//double linked list, knows what is before and after
+	
+	public Node() {
+		data = null;
+		next = null;
+		previous = null;
+	}
+	public Node(People data) {
+		this.data = data;
+		next = null;
+		previous = null;
+	}
+	
+	public Node getNext() {
+		return next;
+	}
+	
+	public Node getPrevious() {
+		return previous;
+	}
+	
+	public void setNext(Node p) {
+		next = p;
+	}
+	
+	
+
+}

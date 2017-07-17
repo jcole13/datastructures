@@ -1,0 +1,18 @@
+package main;
+
+public class ListNode {
+	People data;
+	ListNode next, previous;//double linked list, knows what is before and after
+	
+	public ListNode() {
+		data = null;
+		next = null;
+		previous = null;
+	}
+	public ListNode(People data) {
+		this.data = data;
+		next = null;
+		previous = null;
+	}
+
+}

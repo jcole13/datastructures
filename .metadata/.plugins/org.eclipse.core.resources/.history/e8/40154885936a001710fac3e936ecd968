@@ -1,0 +1,65 @@
+package main;
+
+public class Graph {
+	LList allNodes;
+	LList allEdges;
+	LList adjList;
+	
+	public Graph() {
+		allNodes = new LList();
+		allEdges = new LList();
+		adjList = new LList();
+	}
+	public void addNode(GraphNode n){
+		allNodes.append(n);
+		adjList.append(new LList(n));
+	}
+	public void addEdge(GraphNode f, GraphNode t){
+		GraphEdge temp = new GraphEdge(f, t);
+		allEdges.append(temp);
+		Node found = adjList.adjfind(f);
+		((LList) found.getData()).append(f);
+
+	}
+	
+	public GraphNode Depth(GraphNode n) {
+		Stack stack = new Stack();
+		return null;
+	}
+	
+	public boolean Breadth(GraphNode n) {
+		Queue queue = new Queue();
+		
+		GraphNode first = ((LList) adjList.getFirst().getData()).getLabel();
+		
+		queue.join(first);
+		first.setVisited(true);
+		
+		while(!queue.isEmpty()) {
+			System.out.println(first);
+			if(queue.leave().equals(n)) {
+				return true;
+			}
+			Node node = adjList.adjfind(first);
+			Node gn = ((LList) node.getData()).getFirst();
+			for(int j = 0; j < ((LList) node.getData()).getLength(); j++) {
+				if(!((GraphNode) gn.getData()).getVisited()) {
+					queue.join(((GraphNode)gn.getData()));
+					System.out.println((GraphNode) gn.getData());
+					((GraphNode) gn.getData()).setVisited(true);
+				}
+				gn = gn.getNext();
+				
+				
+			}
+		}
+		return false;
+	}	
+	
+	
+
+
+
+	
+
+}

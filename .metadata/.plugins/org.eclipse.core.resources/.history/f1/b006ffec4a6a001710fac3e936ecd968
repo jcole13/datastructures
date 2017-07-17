@@ -1,0 +1,7 @@
+package main;
+
+public class ListNode {
+	Object data;
+	ListNode next, previous; //double linked list, knows what is before and after
+
+}

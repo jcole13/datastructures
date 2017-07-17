@@ -1,0 +1,23 @@
+package main;
+
+public class LList {
+	People label;
+	ListNode header;
+	int length;
+	
+	public LList(People p) {
+		label = p;
+		header = new ListNode();
+		length = 0;
+	}
+	public LList() {
+		label = null;
+		header = new ListNode();
+		length = 0;
+	}
+	
+	public void append(People p) {
+		
+	}
+
+}

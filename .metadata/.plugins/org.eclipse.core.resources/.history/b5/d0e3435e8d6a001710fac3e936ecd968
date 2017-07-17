@@ -1,0 +1,13 @@
+package main;
+
+public class Search {
+	
+	public GraphNode Depth(GraphNode n) {
+		return null;
+	}
+	
+	public GraphNode Breadth(GraphNode n) {
+		
+	}
+
+}

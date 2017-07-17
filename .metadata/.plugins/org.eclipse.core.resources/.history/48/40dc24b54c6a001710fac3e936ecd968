@@ -1,0 +1,38 @@
+package main;
+
+public class LList {
+	People label;
+	ListNode header, back;
+	int length;
+	
+	public LList(People p) {
+		label = p;
+		header = new ListNode();
+		length = 0;
+	}
+	public LList() {
+		label = null;
+		header = new ListNode();
+		length = 0;
+	}
+	
+	public void append(People p){
+		if(isEmpty()) {
+			header.setNext(new ListNode(p));
+			back = header.getNext();
+			length++;
+			
+		}
+		else{
+			back.setNext(New ListNode(p));
+			back = back.getNext();
+			length++;
+		}
+
+	}
+	public boolean isEmpty(){ 
+		return this.length == 0;}
+	
+	
+	
+}

@@ -1,0 +1,13 @@
+package main;
+
+public class GraphNode {
+	
+	LList nodes;
+	People label;
+	GraphNode next, previous;
+	
+	public GraphNode() {
+		
+	}
+
+}

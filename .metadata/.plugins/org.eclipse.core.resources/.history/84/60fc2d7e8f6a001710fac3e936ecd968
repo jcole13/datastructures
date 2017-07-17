@@ -1,0 +1,15 @@
+package main;
+
+public class Search {
+	
+	public GraphNode Depth(GraphNode n) {
+		Stack stack = new Stack();
+		return null;
+	}
+	
+	public GraphNode Breadth(GraphNode n) {
+		Queue queue = new Queue();
+		return null;
+	}
+
+}

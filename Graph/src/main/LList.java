@@ -1,0 +1,103 @@
+package main;
+
+public class LList {
+	private GraphNode label;
+	private Node header, back;
+	private int length;
+	
+	public LList() {
+		label = null;
+		header = new Node();
+		length = 0;
+	}
+	
+	public LList(GraphNode o) {
+		label = o;
+		header = new Node();
+		length = 0;
+	}
+	public Node getFirst() {
+		return header.getNext();
+	}
+	
+	public void append(Object p){
+		if(isEmpty()) {
+			Node temp = new Node(p);
+			header.setNext(temp);
+			temp.setPrevious(header);
+			back = header.getNext();
+			length++;
+			
+		}
+		else{
+			Node temp = new Node(p);
+			back.setNext(temp);
+			temp.setPrevious(back);
+			back = back.getNext();
+			length++;
+		}
+
+	}
+	
+	public GraphNode getLabel() {
+		return label;
+	}
+	public boolean isEmpty(){ 
+		return this.length == 0;
+	}
+	
+	public Node adjfind(GraphNode n) { //use for adjacency list
+		Node i = header.getNext();
+		//System.out.println(i.toString());
+		//Node j = i.getNext();
+		//System.out.println(j.toString());
+		do{
+			//System.out.println(i.toString());
+			if(((LList) i.getData()).getLabel().equals(n)) {
+				//System.out.println("Found");
+				return i;
+			}
+			
+			/*if(i.getData() == null) {
+				System.out.println("Reached null");
+				return null;
+			}*/
+			i = i.getNext();
+			//System.out.println(i.getData());
+			//System.out.println(!((LList) i.getData()).equals(n));
+			//System.out.println(i.getData() != null);
+		}while((i.getData() != null) && !(((LList) i.getData()).equals(n)));
+		
+		//System.out.println("Exited Loop");
+		
+		return null;
+	}
+	
+	public Node regFind(GraphNode n) {
+		Node i = header.getNext();
+		while(i != null && !(((GraphNode) i.getData()).equals(n))){
+			if((((GraphNode) i.getData()).equals(n))) return i;
+			i = i.getNext();
+		}
+		return null;
+		
+	}
+	
+	public String toString() {
+		Node temp = header.getNext();
+		String result = "";
+		while(temp != null) {
+			result += " " + temp.toString();
+			temp = temp.getNext();
+		}
+		//if(label != null) return label.toString();
+		return result;
+	}
+	
+	public int getLength() {
+		return length;
+	}
+	
+	
+	
+}

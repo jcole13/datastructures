@@ -1,0 +1,16 @@
+package main;
+
+public class GraphNode {
+	
+	private People label;
+	
+	public GraphNode(People p) {
+		label = p;
+		
+	}
+	
+	public People getPerson() {
+		return label;
+	}
+
+}

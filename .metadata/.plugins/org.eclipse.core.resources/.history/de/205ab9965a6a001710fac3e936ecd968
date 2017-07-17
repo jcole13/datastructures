@@ -1,0 +1,51 @@
+package main;
+
+public class LList {
+	GraphNode label;
+	Node header, back;
+	int length;
+	
+	public LList() {
+		label = null;
+		header = new Node();
+		length = 0;
+	}
+	
+	public LList(Object o) {
+		label = o;
+		header = new Node();
+		length = 0;
+	}
+	
+	public void append(Object p){
+		if(isEmpty()) {
+			Node temp = new Node(p);
+			header.setNext(temp);
+			temp.setPrevious(header);
+			back = header.getNext();
+			length++;
+			
+		}
+		else{
+			Node temp = new Node(p);
+			back.setNext(temp);
+			temp.setPrevious(back);
+			back = back.getNext();
+			length++;
+		}
+
+	}
+	public boolean isEmpty(){ 
+		return this.length == 0;
+	}
+	
+	public Node find(People p) {
+		Node i = header.getNext();
+		while(i.getNext() != null && i.getData().) {
+			if()
+		}
+	}
+	
+	
+	
+}

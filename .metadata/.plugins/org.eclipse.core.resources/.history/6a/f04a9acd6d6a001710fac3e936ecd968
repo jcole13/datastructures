@@ -1,0 +1,32 @@
+package main
+
+
+
+Q3 implements Que
+	Node front, back
+	Int length
+	Public Q (int size){
+	}
+
+	Public void join(People p){
+	Node temp = new Node(p)
+	if(isEmpty){
+		back = temp;
+		front = back; length++; //philosophically it feels better
+	}
+	Else{
+		back .setNext(temp); 
+		Back = back.getNext();
+		length++;
+	}
+	Front = new Node(p)
+	Back = front;
+	length++
+	}
+	Public person leave(){ //assumes unlimited data
+		if(isEmpty())  throw new QException(“empty”)
+		Person temp = front.getData();
+		Front = front.getNext();
+		Length--
+		Return temp;
+}

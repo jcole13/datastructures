@@ -1,0 +1,56 @@
+package main;
+
+public class LList {
+	GraphNode label;
+	Node header, back;
+	int length;
+	
+	public LList() {
+		label = null;
+		header = new Node();
+		length = 0;
+	}
+	
+	public LList(GraphNode o) {
+		label = o;
+		header = new Node();
+		length = 0;
+	}
+	
+	public void append(Object p){
+		if(isEmpty()) {
+			Node temp = new Node(p);
+			header.setNext(temp);
+			temp.setPrevious(header);
+			back = header.getNext();
+			length++;
+			
+		}
+		else{
+			Node temp = new Node(p);
+			back.setNext(temp);
+			temp.setPrevious(back);
+			back = back.getNext();
+			length++;
+		}
+
+	}
+	
+	public GraphNode getLabel() {
+		return label;
+	}
+	public boolean isEmpty(){ 
+		return this.length == 0;
+	}
+	
+	public Node find(GraphNode n) {
+		Node i = header.getNext();
+		while(i.getNext() != null && !(((LList) i.getData()).getLabel().equals(n))){
+			if(((LList) i.getData()).getLabel().equals(n)) return i;
+		}
+		return null;
+	}
+	
+	
+	
+}

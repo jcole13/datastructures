@@ -1,0 +1,32 @@
+package main;
+
+public class Graph {
+	LList allNodes;
+	LList allEdges;
+	LList adjList;
+	
+	public Graph() {
+		allNodes = new LList();
+		allEdges = new LList();
+		adjList = new LList();
+	}
+	public void addNode(graphNode n){
+		allNodes.append(n);
+		adjList.append(new LList(n))
+
+	}
+	public void addEdge(String cong, String qu){ //not ideal
+		GraphNode ot = allNodes.find(cong);
+		GraphNode k = allNodes.find(qu);
+
+		LList temp = adjList.find(ot);
+		temp.append(ot);
+
+		//Edge road = new Edge(ot, k, cost);
+		//allEdges.append(road);
+	}
+
+
+	
+
+}

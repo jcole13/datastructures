@@ -1,0 +1,16 @@
+package main;
+
+public class Test {
+	
+	public static void main(String [] args) {
+		
+		Graph g = new Graph();
+		GraphNode A = new GraphNode(new People("Stan"));
+		GraphNode B = new GraphNode(new People("Jerry"));
+		g.addNode(A);
+		g.addNode(B);
+		g.adjList.adjfind(A);
+		
+	}
+
+}

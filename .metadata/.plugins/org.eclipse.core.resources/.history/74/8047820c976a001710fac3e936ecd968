@@ -1,0 +1,25 @@
+package main;
+
+public class Test {
+	
+	public static void main(String [] args) {
+		
+		Graph g = new Graph();
+		GraphNode A = new GraphNode(new People("A"));
+		GraphNode B = new GraphNode(new People("B"));
+		GraphNode C = new GraphNode(new People("C"));
+		g.addNode(A);
+		g.addNode(B);
+		g.addNode(C);
+		g.addEdge(C, A);
+		g.addEdge(A, C);
+		g.addEdge(B, C);
+		g.addEdge(B, A);
+		g.addEdge(C, B);
+		g.Breadth(B);
+		//System.out.println(g.allEdges);
+		//g.adjList.adjfind(C);
+		
+	}
+
+}
