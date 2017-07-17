@@ -60,17 +60,12 @@ public class LList {
 		return null;
 	}
 	
-	public GraphNode gnFind(String s) {
+	public Node regFind(Node s) {
 		Node i = header.getNext();
-		do{
-			if(((LList) i.getData()).getLabel().getPerson().getName().equals(s)) {
-				return ((LList) i.getData()).getLabel();
-			}
+		while(i != null && !(((GraphNode) i.getData()).equals(n))){
+			if((((GraphNode) i.getData()).equals(n))) return i;
 			i = i.getNext();
-		}while((i.getData() != null)); //gives graphnode from string 
-		
-		System.out.println("Exited Loop");
-		
+		}
 		return null;
 		
 	}

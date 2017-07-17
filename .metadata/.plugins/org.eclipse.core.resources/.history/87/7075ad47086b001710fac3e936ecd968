@@ -48,11 +48,24 @@ public class LList {
 	
 	public Node adjfind(GraphNode n) { //use for adjacency list
 		Node i = header.getNext();
+		//System.out.println(i.toString());
+		//Node j = i.getNext();
+		//System.out.println(j.toString());
 		do{
+			//System.out.println(i.toString());
 			if(((LList) i.getData()).getLabel().equals(n)) {
+				//System.out.println("Found");
 				return i;
 			}
+			
+			/*if(i.getData() == null) {
+				System.out.println("Reached null");
+				return null;
+			}*/
 			i = i.getNext();
+			//System.out.println(i.getData());
+			//System.out.println(!((LList) i.getData()).equals(n));
+			//System.out.println(i.getData() != null);
 		}while((i.getData() != null) && !(((LList) i.getData()).equals(n)));
 		
 		//System.out.println("Exited Loop");
@@ -60,17 +73,12 @@ public class LList {
 		return null;
 	}
 	
-	public GraphNode gnFind(String s) {
+	public Node regFind(GraphNode n) {
 		Node i = header.getNext();
-		do{
-			if(((LList) i.getData()).getLabel().getPerson().getName().equals(s)) {
-				return ((LList) i.getData()).getLabel();
-			}
+		while(i != null && !(((GraphNode) i.getData()).equals(n))){
+			if((((GraphNode) i.getData()).equals(n))) return i;
 			i = i.getNext();
-		}while((i.getData() != null)); //gives graphnode from string 
-		
-		System.out.println("Exited Loop");
-		
+		}
 		return null;
 		
 	}

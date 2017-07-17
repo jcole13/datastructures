@@ -22,7 +22,6 @@ public class Graph {
 
 	}
 	
-	
 	public boolean Depth(GraphNode n) {
 		Stack stack = new Stack();
 		GraphNode first = ((LList) adjList.getFirst().getData()).getLabel();

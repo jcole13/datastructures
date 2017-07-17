@@ -67,9 +67,9 @@ public class LList {
 				return ((LList) i.getData()).getLabel();
 			}
 			i = i.getNext();
-		}while((i.getData() != null)); //gives graphnode from string 
+		}while((i.getData() != null) && !(((LList) i.getData()).getLabel().getPerson().getName().equals(s));
 		
-		System.out.println("Exited Loop");
+		//System.out.println("Exited Loop");
 		
 		return null;
 		

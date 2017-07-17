@@ -1,0 +1,13 @@
+package main;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class UI {
+	
+	public void UserInput() {
+		InputStreamReader nab = new InputStreamReader(System.in);
+		BufferedReader grab = new BufferedReader(nab);
+	}
+
+}
