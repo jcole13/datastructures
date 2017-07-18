@@ -7,28 +7,30 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Input {
-	public void chooseInput(Calculation calculation, Converter converter){
+	public void chooseInput(Calculation calculation, Converter converter){//chooses how choose the program
 		//Use input from keyboard
 		InputStreamReader nab = new InputStreamReader(System.in);
 		BufferedReader grab = new BufferedReader(nab);
 
 		
-		System.out.println("Which method of input would you prefer? [keyboard/file]");
+		System.out.println("Which method of input would you prefer? [keyboard/file]");//out to user
 		//only two options
 		String answer = null;
-		do{
+		do{//looping through until a sufficient answer is given
 			System.out.print(">>>");
 			try {
-				answer = grab.readLine();
+				answer = grab.readLine();//reading from the user's input
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			} //end catch
 		}while(!answer.toLowerCase().equals("keyboard") && !answer.toLowerCase().equals("file"));
-		if(answer.toLowerCase().equals("keyboard")) keyboardIn(calculation, converter);
+		if(answer.toLowerCase().equals("keyboard")) keyboardIn(calculation, converter); //choice of what to give
 		else fileIn(calculation, converter);
 	}//end chooseInput
 		
-	
+	/*
+	 * 
+	 */
 	private void keyboardIn(Calculation calculation, Converter converter){
 		//Use input from keyboard
 		InputStreamReader nab = new InputStreamReader(System.in);
@@ -61,6 +63,7 @@ public class Input {
 				}
 			}while(!s.toLowerCase().equals("calculate") && !s.toLowerCase().equals("convert"));
 			System.out.println("Enter the postfix expression");
+			System.out.println("Please put a space between every number");
 			System.out.print(">>>");
 			if(s.toLowerCase().equals("calculate")) {
 				String d = null;
@@ -95,6 +98,7 @@ public class Input {
 				}
 			}while(!c.toLowerCase().equals("calculate") && !c.toLowerCase().equals("convert"));
 			System.out.println("Enter the infix expression");
+			System.out.println("Please insert spaces where you can");
 			System.out.print(">>>");
 			if(c.toLowerCase().equals("calculate")) {
 				String d = null;
@@ -104,7 +108,7 @@ public class Input {
 					e.printStackTrace();
 				} //end catch
 				System.out.println(calculation.infix(Parser.parse(d)));
-			}
+			} //end if
 			else {
 				String e = null;
 				try {
@@ -114,12 +118,12 @@ public class Input {
 				} //end catch
 				System.out.println(converter.toPolish(Parser.parse(e)));
 				
-			}
+			} //end else
 			
-		}
+		} //end else
 	}//end keyBoardin
 	private void fileIn(Calculation calculation, Converter converter){
-		//Use input from keyboard
+		//Use input from file
 		InputStreamReader nab = new InputStreamReader(System.in);
 		BufferedReader grab = new BufferedReader(nab);
 		String fileName = null;
@@ -159,25 +163,24 @@ public class Input {
 		}
 		
 		String value = null;//Initialized
-		do{
 			try{
 			value = br.readLine();
-			if(value == null) break; //necessary to stop crash. loop does not terminate on right term
+			//if(value == null) break; //necessary to stop crash. loop does not terminate on right term
 			//checks if multiple numbers in one line
 			}catch(NullPointerException n){
 				//System.out.println("Something went wrong");
 			}catch(IOException e){
 				e.printStackTrace();
-			}
-		}while(value != null);
+			} //end catch
+			
 		
-		System.out.println("Would you like to input an expression in postfix or infix notation? [postfix/infix]");
+		System.out.println("Is the expression in postfix or infix notation? [postfix/infix]");
 		//only two options
 		String answer = null;
 		do{
 			System.out.print(">>>");
 			try {
-				answer = grab.readLine();
+				answer = grab.readLine(); //reading info again
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -199,7 +202,7 @@ public class Input {
 			}
 			else {
 				System.out.println(converter.toInfix(Parser.parse(value)));
-			}
+			} // end else
 
 		}//end if
 		else {
@@ -221,6 +224,12 @@ public class Input {
 				System.out.println(converter.toPolish(Parser.parse(value)));
 			}
 			
-		}
-	}
+		} // nd else
+		try {
+			fr.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//end catch
+	} //end filein
 } //end class
