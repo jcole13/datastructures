@@ -1,10 +1,13 @@
 package main;
 
+import java.util.InputMismatchException;
+
 public class Converter {
 	/**@param takes in an array of strings
 	 * @return a String that has the whole operation in polish notation
 	 */
 	public String toInfix(String[] arr) {//goes through and consolidates a postfix expression
+		if(!checkWellFormedPolish(arr)) throw new InputMismatchException("Expression not well formed!");
 		Stack stack = new Stack();
 		for(int i = 0; i < arr.length; i++) {//goes through the array and adds to stack
 			if(!isOperator(arr[i])) stack.join(arr[i]); //checks if operator, if it is number, then add to stack
@@ -13,7 +16,7 @@ public class Converter {
 				String two = "";
 				one = stack.leave();
 				two = stack.leave();
-				stack.join("(" + two + arr[i] + one + ")" );//this is the way
+				stack.join("(" + two + " " + arr[i] + " " + one + ")" );//this is the way
 			} //end else
 		} //end loop
 		return stack.leave();
@@ -24,7 +27,7 @@ public class Converter {
 	public String toPolish(String[] arr) {
 		Stack stack = new Stack();//initializing the stack
 		String result = "";
-		
+		//dont check for well formed because it does not really effect the outcome in terms of errors
 		for(int i = 0; i < arr.length; i++) {//looping through the array
 			if(!isOperator(arr[i])) result += " " + arr[i]; // add to the list if just an operator
 			else if(arr[i].equals("(")) stack.join(arr[i]);//testing if there is a braces
@@ -69,5 +72,17 @@ public class Converter {
 		if(s.equals("*") || s.equals("/")) return 2;
 		return -1;
 	} //end pemdas
+	private boolean checkWellFormedPolish(String [] arr) { // CHECKME make sure expression is ok
+		int counter = 0;
+		String regex = "\\d+"; //digit
+		for(String s : arr) {
+			//going thorugh the parsed array, if there is a number, which is written by the regex, then the counter goes up, if there is a operation then it goes down
+			if(s.matches(regex)) counter++;
+			else if(s.length() > 1) counter++;
+			else counter--;
+			if(counter <= 0) return false;//if there is more operations than numbers
+		} //end loop
+		return counter == 1;
+	}//end CWFP
 
 } //end class
