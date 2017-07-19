@@ -1,8 +1,7 @@
 package main;
-
 public class Test {
-	
-	public static void main(String [] args) {
+	@Deprecated
+	public static void main(String [] args) {//do not use, this is just a remnant code
 		
 		Graph g = new Graph();
 		GraphNode A = new GraphNode(new People("A"));
